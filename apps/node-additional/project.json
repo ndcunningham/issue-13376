@@ -13,6 +13,7 @@
         "outputPath": "dist/apps/node-additional",
         "format": ["cjs"],
         "bundle": false,
+        "additionalEntryPoints": ["apps/node-additional/src/main-2.ts"],
         "main": "apps/node-additional/src/main.ts",
         "tsConfig": "apps/node-additional/tsconfig.app.json",
         "assets": ["apps/node-additional/src/assets"],

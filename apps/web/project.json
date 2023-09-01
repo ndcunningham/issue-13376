@@ -1,0 +1,48 @@
+{
+  "name": "web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/web/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/web",
+        "generatePackageJson": true,
+        "main": "apps/web/src/main.ts",
+        "tsConfig": "apps/web/tsconfig.app.json",
+        "additionalEntryPoints": [{
+          "entryName": "main2",
+          "entryPath": "apps/web/src/main2.ts"
+        }],
+        "assets": ["apps/web/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/web/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "web:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "web:build:development"
+        },
+        "production": {
+          "buildTarget": "web:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
